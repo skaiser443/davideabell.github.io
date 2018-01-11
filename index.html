@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <title>STAR Communities</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.31.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.31.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='map'></div>
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZGF2aWRlYWJlbGwiLCJhIjoiY2pjNm00cWp2MjhoOTJ4cGY0ajZsMms4OSJ9.Cf-vJGxNllHANC5y_tz7QA';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/davideabell/cjc816ota6io42rmou8oytyqo',
+center: [-98, 39],
+    zoom: 3 
+    });
+map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['3-star']
+  });
+
+  if (!features.length) {
+    return;
+  }
+
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.Community + '</h3><p>' + feature.properties.Certified + '</p>')
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+});
+map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['4-star']
+  });
+
+  if (!features.length) {
+    return;
+  }
+
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.Community + '</h3><p>' + feature.properties.Certified + '</p>')
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+});
+map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['5-star']
+  });
+
+  if (!features.length) {
+    return;
+  }
+
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.Community + '</h3><p>' + feature.properties.Certified + '</p>')
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+});
+map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['full-subscribers']
+  });
+
+  if (!features.length) {
+    return;
+  }
+
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.Community + '</h3><p>' + '</p>')
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+});
+    </script>
+  </body>
+</html>
